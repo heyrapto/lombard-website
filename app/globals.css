@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
 body {
-  background-color: white;
+  color: #333;
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 160%;
+}
+
+body {
+  /* font-family: __Archivo_2aad3c', '__Archivo_Fallback_2aad3c; */
+  background: #fff;
 }

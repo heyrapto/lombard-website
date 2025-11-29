@@ -14,7 +14,7 @@ const Button: React.FC<ButtonProps> = ({ ...props }) => {
     props.variant === "dark" ? "bg-black text-white p-3" : 
     props.variant === "grey" ? "bg-gray-600 text-white p-3" : 
     ""}`
-    const baseClases = "rounded-[50px] w-fit inline-flex items-center gap-3 text-[1.3rem]"
+    const baseClases = "rounded-[50px] w-fit inline-flex items-center gap-3 text-[1.3rem] cursor-pointer"
   return (
     <button className={`${baseClases} ${varaintClases}`}>
         {props.children}

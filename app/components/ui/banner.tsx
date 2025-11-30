@@ -10,8 +10,8 @@ const Banner = () => {
                     <Image
                         src="/images/btc-icon.svg"
                         alt="Logo"
-                        width={100}
-                        height={100}
+                        width={70}
+                        height={70}
                     />
                     <p className="font-semibold text-[1.3rem]">Lombard Acquires BTC.b from Ava Labs in First-of-Its-Kind Deal</p>
                 </div>

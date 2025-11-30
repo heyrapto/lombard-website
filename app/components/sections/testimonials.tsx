@@ -18,35 +18,35 @@ const Testimonials = () => {
   const testimonials: Testimonial[] = [
     {
       quote: "Bitcoin DeFi is the largest opportunity of the decade and close collaboration between thought and technology leaders like Lombard and BOB is exactly what the industry needs. Lombard's $1.5B LBTC LST is just the start. With BOB as the Gateway to Bitcoin DeFi and Lombard introducing new sustainable yield platforms, it's a question of when, not if, BTC DeFi will flip ETH DeFi.",
-      logo: '/images/testimonials/bob.svg',
+      logo: '/images/okx.svg',
       logoAlt: 'BOB',
       author: 'Alexei Zamyatin',
       position: 'Co-founder, BOB'
     },
     {
       quote: "BTC has always been the cornerstone of crypto, but until now, it's been largely passive. Lombard marks a turning point—not just in how BTC is held, but how it moves.",
-      logo: '/images/testimonials/bybit.svg',
+      logo: '/images/bybit.svg',
       logoAlt: 'BYBIT',
       author: 'Emily Bao',
       position: 'Head of Web3, Bybit'
     },
     {
       quote: "With Lombard, Bitcoin holders can benefit from the best parts of the onchain economy — both staking and access to DeFi.",
-      logo: '/images/testimonials/figment.svg',
+      logo: '/images/aave.svg',
       logoAlt: 'Figment',
       author: 'Lorien Gabel',
       position: 'Co-Founder & CEO, Figment'
     },
     {
       quote: "Our partnership with Lombard signifies a shared vision for the future of BTCFi. Integrating Chainlink CCIP, Proof of Reserve, and Price Feeds will help enable Lombard to create a robust, scalable platform that helps ensure the security of LBTC.",
-      logo: '/images/testimonials/chainlink.svg',
+      logo: '/images/chainlink.svg',
       logoAlt: 'Chainlink',
       author: 'Johann Eid',
       position: 'Chief Business Officer, Chainlink Labs'
     },
     {
       quote: "Lombard's cross-chain LBTC product taps into the vast pool of parked Bitcoin liquidity, enhancing the supply-side into Babylon's Bitcoin staking protocol.",
-      logo: '/images/testimonials/babylon.svg',
+      logo: '/images/ether.svg',
       logoAlt: 'Babylon',
       author: 'David Tse',
       position: 'Co-Founder, Babylon'

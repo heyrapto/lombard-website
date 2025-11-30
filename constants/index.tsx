@@ -37,7 +37,7 @@ export const featuresData: FeatureCard[] = [
       link: '/vaults'
     },
     {
-      icon: '/images/features/marketplace.svg',
+      icon: '/images/features/defi.svg',
       title: 'Lombard DeFi Marketplace',
       desc: 'Explore opportunities to lend, borrow, and trade Bitcoin in DeFi, across 12 leading blockchains',
       type: 'has-link',
@@ -51,7 +51,7 @@ export const featuresData: FeatureCard[] = [
       link: '/sdk'
     },
     {
-      icon: '/images/features/staking.svg',
+      icon: '/images/features/stake.svg',
       title: 'Bitcoin Staking',
       desc: "Stake directly to Lombard's 4 Finality Providers on Babylon, operated with Galaxy, Kiln, P2P and Figment",
       type: 'has-link',
@@ -64,15 +64,73 @@ export const featuresData: FeatureCard[] = [
       type: 'normal'
     },
     {
-      icon: '/images/features/cross-chain.svg',
+      icon: '/images/features/chain.svg',
       title: 'Cross-Chain Bitcoin',
       desc: 'The new BTC primitive will enable developers to onboard BTC in both wrapped and staked forms',
       type: 'coming-soon'
     },
     {
-      icon: '/images/features/tokenized.svg',
+      icon: '/images/features/products.svg',
       title: 'Tokenized & Institutional Products',
       desc: "We're building a basis trade vault & tokenized options vault with leading institutions",
       type: 'coming-soon'
+    }
+  ];
+
+  export interface EcosystemCard {
+    icon: string;
+    title: string;
+    desc: string;
+    brandImages: string[];
+  }
+
+ export const ecosystemData: EcosystemCard[] = [
+    {
+      icon: '/images/ecosystem/institutions.svg',
+      title: 'Institutions',
+      desc: 'Onchain funds and asset managers allocate to LBTC strategies to return value to their customers.',
+      brandImages: ['/images/galaxy.png', '/images/dcg.png']
+    },
+    {
+      icon: '/images/ecosystem/protocols.svg',
+      title: 'Leading Protocols',
+      desc: 'Onboard LBTC as a premier collateral type, driving new users and activity to the protocols.',
+      brandImages: ['/images/aave.svg']
+    },
+    {
+      icon: '/images/ecosystem/exchanges.svg',
+      title: 'Exchanges',
+      desc: 'Exchanges integrate the Lombard SDK into their platforms, giving users access to Bitcoin staking.',
+      brandImages: ['/images/binance.svg', '/images/bybit.svg']
+    },
+    {
+      icon: '/images/ecosystem/custodians.svg',
+      title: 'Custodians',
+      desc: 'Protect user assets, while providing access to liquid Bitcoin and DeFi opportunities.',
+      brandImages: ['/images/security/cubist.svg', '/images/security/cetfu.svg']
+    },
+    {
+      icon: '/images/ecosystem/holders.svg',
+      title: 'Bitcoin Holders',
+      desc: 'Unlock the earning potential of Bitcoin onchain with Lombard. Starting with staking and moving into onchain markets, seamlessly and securely.',
+      brandImages: []
+    },
+    {
+      icon: '/images/ecosystem/providers.svg',
+      title: 'Staking providers',
+      desc: 'Work with Lombard to enhance the supply-side of their two-sided marketplaces.',
+      brandImages: ['/images/security/figment.svg', '/images/security/kiln.svg']
+    },
+    {
+      icon: '/images/ecosystem/wallets.svg',
+      title: 'Wallets',
+      desc: 'Integrate the Lombard SDK to offer liquid Bitcoin staking without leaving the platform they trust.',
+      brandImages: []
+    },
+    {
+      icon: '/images/ecosystem/platforms.svg',
+      title: 'Restaking platforms',
+      desc: 'Partner with Lombard to offer dual-yielding assets to users, and provide enhanced security to their developer networks.',
+      brandImages: ['/images/ecosystem/symbiotic.svg', '/images/ecosystem/karak.svg']
     }
   ];

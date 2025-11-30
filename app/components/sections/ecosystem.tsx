@@ -4,68 +4,11 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-
-interface EcosystemCard {
-  icon: string;
-  title: string;
-  desc: string;
-  brandImages: string[];
-}
+import { ecosystemData } from '@/constants';
 
 const Ecosystem = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-
-  const ecosystemData: EcosystemCard[] = [
-    {
-      icon: '/images/ecosystem/institutions.svg',
-      title: 'Institutions',
-      desc: 'Onchain funds and asset managers allocate to LBTC strategies to return value to their customers.',
-      brandImages: ['/images/galaxy.png', '/images/dcg.png']
-    },
-    {
-      icon: '/images/ecosystem/protocols.svg',
-      title: 'Leading Protocols',
-      desc: 'Onboard LBTC as a premier collateral type, driving new users and activity to the protocols.',
-      brandImages: ['/images/aave.svg']
-    },
-    {
-      icon: '/images/ecosystem/exchanges.svg',
-      title: 'Exchanges',
-      desc: 'Exchanges integrate the Lombard SDK into their platforms, giving users access to Bitcoin staking.',
-      brandImages: ['/images/binance.svg', '/images/bybit.svg']
-    },
-    {
-      icon: '/images/ecosystem/custodians.svg',
-      title: 'Custodians',
-      desc: 'Protect user assets, while providing access to liquid Bitcoin and DeFi opportunities.',
-      brandImages: ['/images/security/cubist.svg', '/images/security/cetfu.svg']
-    },
-    {
-      icon: '/images/ecosystem/holders.svg',
-      title: 'Bitcoin Holders',
-      desc: 'Unlock the earning potential of Bitcoin onchain with Lombard. Starting with staking and moving into onchain markets, seamlessly and securely.',
-      brandImages: []
-    },
-    {
-      icon: '/images/ecosystem/staking.svg',
-      title: 'Staking providers',
-      desc: 'Work with Lombard to enhance the supply-side of their two-sided marketplaces.',
-      brandImages: ['/images/security/figment.svg', '/images/security/kiln.svg']
-    },
-    {
-      icon: '/images/ecosystem/wallets.svg',
-      title: 'Wallets',
-      desc: 'Integrate the Lombard SDK to offer liquid Bitcoin staking without leaving the platform they trust.',
-      brandImages: []
-    },
-    {
-      icon: '/images/ecosystem/restaking.svg',
-      title: 'Restaking platforms',
-      desc: 'Partner with Lombard to offer dual-yielding assets to users, and provide enhanced security to their developer networks.',
-      brandImages: ['/images/ecosystem/symbiotic.svg', '/images/ecosystem/karak.svg']
-    }
-  ];
 
   const totalSlides = ecosystemData.length;
 
@@ -100,6 +43,7 @@ const Ecosystem = () => {
     }, 5000);
 
     return () => clearInterval(interval);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex]);
 
   return (
@@ -159,7 +103,7 @@ const Ecosystem = () => {
                   >
                     <div
                       className={`relative rounded-2xl p-6 transition-all duration-500 ${
-                        isActive ? 'bg-white min-h-[400px]' : 'bg-black/80 min-h-[180px]'
+                        isActive ? 'bg-white min-h-[400px]' : 'bg-black/80 min-h-[180px] hover:bg-[#00E676]'
                       }`}
                     >
                       {/* Icon */}

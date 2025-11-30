@@ -11,15 +11,15 @@ const Security = () => {
     { name: 'Amber', logo: '/images/security/amber.svg' },
     { name: 'Ant Pool', logo: '/images/security/ant.svg' },
     { name: 'Chorus One', logo: '/images/security/one.svg' },
-    { name: 'DCG', logo: '/images/dcg.png' },
+    { name: 'DCG', logo: '/images/security/dcg.svg' },
     { name: 'Cubist', logo: '/images/security/cubist.svg' },
-    { name: 'F2Pool', logo: '/images/security/f2pool.svg' },
+    { name: 'F2Pool', logo: '/images/security/f2.svg' },
     { name: 'Figment', logo: '/images/security/figment.svg' },
-    { name: 'Galaxy', logo: '/images/galaxy.png' },
+    { name: 'Galaxy', logo: '/images/security/galaxy.svg' },
     { name: 'Informal Systems', logo: '/images/security/informal.svg' },
     { name: 'Kiln', logo: '/images/security/kiln.svg' },
     { name: 'Nansen', logo: '/images/security/nansen.svg' },
-    { name: 'OKX', logo: '/images/okx.svg' },
+    { name: 'OKX', logo: '/images/security/okx.svg' },
     { name: 'P2P', logo: '/images/security/p2p.svg' },
     { name: 'Wintermute', logo: '/images/winter.svg' }
   ];
@@ -29,7 +29,7 @@ const Security = () => {
       <div className="max-w-[1440px] mx-auto">
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
           {/* Left Side - Content */}
-          <div className="lg:w-2/5">
+          <div className="lg:w-2/7">
             <p className="text-gray-500 text-sm font-medium mb-4 tracking-wide uppercase">
               Secured by the best
             </p>
@@ -59,7 +59,7 @@ const Security = () => {
                   alt={partner.name}
                   width={150}
                   height={60}
-                  className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
+                  className="max-w-full max-h-full object-contain transition-all duration-300"
                 />
               </div>
             ))}

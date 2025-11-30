@@ -119,7 +119,7 @@ const Ecosystem = () => {
                                         }}
                                     >
                                         <div
-                                            className={`rounded-lg p-6 transition-all duration-700 ${isActive ? 'bg-white min-h-[380px] shadow-2xl' : 'bg-black/80 min-h-[200px] hover:bg-[#00E676]'
+                                            className={`rounded-lg p-6 transition-all duration-700 ${isActive ? 'bg-white min-h-[350px] shadow-2xl' : 'bg-black/80 min-h-[200px] hover:bg-[#00E676]'
                                                 }`}
                                         >
                                             <div className="mb-4">
@@ -132,16 +132,16 @@ const Ecosystem = () => {
                                                 />
                                             </div>
 
-                                            <h3 className={`text-lg font-bold mb-3 transition-colors ${isActive ? 'text-black' : 'text-white'}`}>
+                                            <h3 className={`text-2xl font-bold mb-3 transition-colors ${isActive ? 'text-black' : 'text-white'}`}>
                                                 {card.title}
                                             </h3>
 
                                             {isActive && (
                                                 <div className="transition-opacity duration-500">
-                                                    <p className="text-gray-700 text-sm leading-relaxed mb-6">{card.desc}</p>
+                                                    <p className="text-gray-700 text-xl leading-relaxed mb-6">{card.desc}</p>
 
                                                     {card.brandImages?.length > 0 && (
-                                                        <div className="pt-4 border-t border-gray-200">
+                                                        <div className="pt-4 border-t-2 border-black">
                                                             <div className="flex items-center gap-4 flex-wrap">
                                                                 {card.brandImages.map((brand, brandIdx) => (
                                                                     <div key={brandIdx} className="h-6 flex items-center">

@@ -1,50 +1,63 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { ecosystemData } from '@/constants';
 
 const Ecosystem = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const slides = ecosystemData;
+  const slidesLen = slides.length;
 
-  const totalSlides = ecosystemData.length;
+  const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
 
-  const handlePrev = () => {
-    if (!isAnimating) {
-      setIsAnimating(true);
-      setCurrentIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
-      setTimeout(() => setIsAnimating(false), 500);
-    }
-  };
+  // Start at the first card (index 0)
+  const [index, setIndex] = useState(0);
+  const [containerWidth, setContainerWidth] = useState(0);
+  console.log(containerWidth)
 
-  const handleNext = () => {
-    if (!isAnimating) {
-      setIsAnimating(true);
-      setCurrentIndex((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
-      setTimeout(() => setIsAnimating(false), 500);
-    }
-  };
+  // Configurable sizing (you can tweak these)
+  const slideWidth = 320; // px (card logical width)
+  const gap = 32; // px
+  const totalSlideSpace = slideWidth + gap;
+  const transitionMs = 800;
 
-  const handleCardClick = (index: number) => {
-    if (index !== currentIndex && !isAnimating) {
-      setIsAnimating(true);
-      setCurrentIndex(index);
-      setTimeout(() => setIsAnimating(false), 500);
-    }
-  };
-
-  // Auto-scroll functionality
+  // update container width so we can center properly (responsive)
   useEffect(() => {
-    const interval = setInterval(() => {
-      handleNext();
-    }, 5000);
+    const el = containerRef.current;
+    if (!el) return;
 
-    return () => clearInterval(interval);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentIndex]);
+    const update = () => setContainerWidth(el.clientWidth);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  // compute translate value to center active card
+  const initialOffset = 0;
+const translateX = initialOffset - index * totalSlideSpace;
+
+  // apply transform to track (reactively)
+  useEffect(() => {
+    if (!trackRef.current) return;
+    trackRef.current.style.transition = `transform ${transitionMs}ms cubic-bezier(0.22,1,0.36,1)`;
+    trackRef.current.style.transform = `translateX(${translateX}px)`;
+  }, [translateX, transitionMs]);
+
+  // helpers
+  const handleNext = () => setIndex((i) => Math.min(i + 1, slidesLen - 1));
+  const handlePrev = () => setIndex((i) => Math.max(i - 1, 0));
+
+  // clicking a card: center it
+  const handleCardClick = (clickedIdx: number) => {
+    setIndex(clickedIdx);
+  };
+
+  // For UI counter: show 1..slidesLen
+  const displayCount = index + 1;
 
   return (
     <section className="relative min-h-screen overflow-hidden">
@@ -80,63 +93,55 @@ const Ecosystem = () => {
           </div>
 
           {/* Carousel Container */}
-          <div className="relative mt-20">
-            {/* Cards Wrapper */}
-            <div className="flex justify-center gap-4 px-4">
-              {ecosystemData.map((card, index) => {
-                const isActive = index === currentIndex;
-                const distance = Math.abs(index - currentIndex);
-                const isVisible = distance <= 3;
+          <div ref={containerRef} className="relative mt-20 pt-10 pb-24">
+            {/* Track */}
+            <div
+              ref={trackRef}
+              className="flex will-change-transform"
+              style={{
+                gap: `${gap}px`,
+              }}
+            >
+              {slides.map((card, i) => {
+                const relative = i - index;
+                const dist = Math.abs(relative);
+                const isActive = dist === 0;
 
+                // Scale logic: center is large, immediate neighbors slightly smaller, farther are compact
+                // const scale = isActive ? 1.12 : dist === 1 ? 0.9 : 0.78;
                 return (
                   <div
-                    key={index}
-                    onClick={() => handleCardClick(index)}
-                    className={`shrink-0 transition-all duration-500 ease-out cursor-pointer ${
-                      !isVisible ? 'hidden' : ''
-                    } ${
-                      isActive ? 'w-[420px]' : 'w-[260px]'
-                    }`}
+                    key={`${card.title}-${i}`}
+                    onClick={() => handleCardClick(i)}
+                    className="shrink-0 w-[320px] cursor-pointer transition-transform duration-700"
                     style={{
-                      opacity: isVisible ? 1 : 0
+                    //   transform: `scale(${scale})`,
                     }}
                   >
                     <div
-                      className={`relative rounded-2xl p-6 transition-all duration-500 ${
-                        isActive ? 'bg-white min-h-[400px]' : 'bg-black/80 min-h-[180px] hover:bg-[#00E676]'
+                      className={`rounded-lg p-6 transition-all duration-700 ${
+                        isActive ? 'bg-white min-h-[380px] shadow-2xl' : 'bg-black/80 min-h-[200px] hover:bg-[#00E676]'
                       }`}
                     >
-                      {/* Icon */}
                       <div className="mb-4">
                         <Image
                           src={card.icon}
                           alt={card.title}
                           width={48}
                           height={48}
-                          className={`w-12 h-12 transition-opacity duration-500 ${
-                            !isActive ? 'opacity-50' : ''
-                          }`}
+                          className={`w-12 h-12 transition-opacity`}
                         />
                       </div>
 
-                      {/* Title */}
-                      <h3
-                        className={`text-lg font-bold mb-3 transition-colors duration-500 ${
-                          isActive ? 'text-black' : 'text-white'
-                        }`}
-                      >
+                      <h3 className={`text-lg font-bold mb-3 transition-colors ${isActive ? 'text-black' : 'text-white'}`}>
                         {card.title}
                       </h3>
 
-                      {/* Description and Brands - Only show on active card */}
                       {isActive && (
                         <div className="transition-opacity duration-500">
-                          <p className="text-gray-700 text-sm leading-relaxed mb-6">
-                            {card.desc}
-                          </p>
+                          <p className="text-gray-700 text-sm leading-relaxed mb-6">{card.desc}</p>
 
-                          {/* Brand Images */}
-                          {card.brandImages.length > 0 && (
+                          {card.brandImages?.length > 0 && (
                             <div className="pt-4 border-t border-gray-200">
                               <div className="flex items-center gap-4 flex-wrap">
                                 {card.brandImages.map((brand, brandIdx) => (
@@ -162,27 +167,22 @@ const Ecosystem = () => {
             </div>
 
             {/* Navigation */}
-            <div className="flex items-center justify-center gap-4 mt-12">
-              {/* Prev Button */}
+            <div className="flex items-center justify-center gap-4 mt-30">
               <button
                 onClick={handlePrev}
-                disabled={isAnimating}
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors disabled:opacity-50"
+                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
                 aria-label="Previous"
               >
                 <FiChevronLeft className="text-white text-xl" />
               </button>
 
-              {/* Counter */}
               <span className="text-white font-medium">
-                {currentIndex + 1} / {totalSlides}
+                {displayCount} / {slidesLen}
               </span>
 
-              {/* Next Button */}
               <button
                 onClick={handleNext}
-                disabled={isAnimating}
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors disabled:opacity-50"
+                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
                 aria-label="Next"
               >
                 <FiChevronRight className="text-white text-xl" />
